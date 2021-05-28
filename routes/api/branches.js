@@ -19,15 +19,16 @@ router.get("/banks", async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     let { q, limit, offset } = req.query;
-    q = q.toUpperCase();
-    console.log(q);
-
+    let search = null;
+    if (q) {
+      search = q.toUpperCase();
+    }
     const branches = await db.query(
       `
       SELECT * FROM branches 
-      WHERE branch LIKE '%${q}%' OR address LIKE '%${q}%' OR city LIKE '%${q}%' OR district LIKE '%${q}%' OR state LIKE '%${q}%' 
+      WHERE branch LIKE '%${search}%' OR address LIKE '%${search}%' OR city LIKE '%${search}%' OR district LIKE '%${search}%' OR state LIKE '%${search}%' 
       ORDER BY ifsc
-      LIMIT ${limit} OFFSET ${offset}
+      LIMIT ${limit ? limit : null} OFFSET ${offset ? offset : null}
       `
     );
     res.json(branches.rows);
@@ -40,14 +41,17 @@ router.get("/", async (req, res) => {
 router.get("/autocomplete", async (req, res) => {
   try {
     let { q, limit, offset } = req.query;
-    q = q.toUpperCase();
+    let search = null;
+    if (q) {
+      search = q.toUpperCase();
+    }
 
     const branches = await db.query(
       `
       SELECT * FROM branches 
-      WHERE branch LIKE '%${q}%' 
+      WHERE branch LIKE '%${search}%' 
       ORDER BY ifsc
-      LIMIT ${limit} OFFSET ${offset}
+      LIMIT ${limit ? limit : null} OFFSET ${offset ? offset : null}
       `
     );
     res.json(branches.rows);
