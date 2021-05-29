@@ -1,6 +1,5 @@
 import axios from "axios";
-import { setAlert } from "./alert";
-import { VIEW_MARKS, MARKS_ERROR, ADD_MARKS } from "./types";
+import { VIEW_BRANCHES, BRANCHES_ERROR } from "./types";
 
 //Get everybody's marks
 export const getMarks = () => async (dispatch) => {
@@ -8,12 +7,12 @@ export const getMarks = () => async (dispatch) => {
     const res = await axios.get("/api/marks");
 
     dispatch({
-      type: VIEW_MARKS,
+      type: VIEW_BRANCHES,
       payload: res.data,
     });
   } catch (err) {
     dispatch({
-      type: MARKS_ERROR,
+      type: BRANCHES_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
@@ -22,31 +21,15 @@ export const getMarks = () => async (dispatch) => {
 //Add marks for a new user
 export const addMarks = (formData, history) => async (dispatch) => {
   try {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    const res = await axios.post("/api/marks", formData, config);
+    const res = await axios.post("/api/marks", formData);
 
     dispatch({
-      type: ADD_MARKS,
+      type: VIEW_BRANCHES,
       payload: res.data,
     });
-
-    dispatch(setAlert("Marks Added", "success"));
-
-    history.push("/leaderboard");
   } catch (err) {
-    const errors = err.response.data.errors;
-
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
-    }
-
     dispatch({
-      type: MARKS_ERROR,
+      type: BRANCHES_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status },
     });
   }

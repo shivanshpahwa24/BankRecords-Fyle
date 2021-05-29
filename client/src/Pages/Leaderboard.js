@@ -108,7 +108,7 @@ const Leaderboard = ({ getMarks, marks: { users } }) => {
             },
           ]}
           data={users}
-          title={
+          /* title={
             <h4
               style={{
                 fontSize: "1.3rem",
@@ -118,8 +118,8 @@ const Leaderboard = ({ getMarks, marks: { users } }) => {
               }}
             >
               Leaderboard
-            </h4>
-          }
+            </h4> 
+          }*/
           options={{
             search: true,
             sorting: true,
