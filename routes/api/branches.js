@@ -1,16 +1,19 @@
 const express = require("express");
 const router = express.Router();
+const apicache = require("apicache");
+let cache = apicache.middleware;
 
 const db = require("../../config/db");
 
 // Get branches based on possible matches across all columns and all rows
-router.get("/", async (req, res) => {
+router.get("/", cache("1 day"), async (req, res) => {
   try {
     let { q, limit, offset } = req.query;
     let search = null;
     if (q) {
       search = q.toUpperCase();
     }
+
     const branches = await db.query(
       `
       SELECT branches.*, banks.name FROM branches
@@ -29,7 +32,7 @@ router.get("/", async (req, res) => {
 });
 
 // Get branches based on branch name AUTOCOMPLETE API
-router.get("/autocomplete", async (req, res) => {
+router.get("/autocomplete", cache("1 day"), async (req, res) => {
   try {
     let { q, limit, offset } = req.query;
     let search = null;
