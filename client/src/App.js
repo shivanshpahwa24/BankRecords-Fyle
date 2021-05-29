@@ -1,7 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Leaderboard from "./Pages/Leaderboard";
+import BankBranches from "./Pages/BankBranches";
+import BankDetails from "./Pages/BankDetails";
 import { Provider } from "react-redux";
 import store from "./store";
 
@@ -11,8 +12,8 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={Leaderboard} />
-          <Route exact path="/banks/:bankId" component={Leaderboard} />
+          <Route exact path="/" component={BankBranches} />
+          <Route exact path="/banks/:bankId" component={BankDetails} />
         </Switch>
       </Router>
     </Provider>

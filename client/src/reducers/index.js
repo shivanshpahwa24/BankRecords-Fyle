@@ -1,3 +1,4 @@
+import { combineReducers } from "redux";
 import { VIEW_BRANCHES, BRANCHES_ERROR } from "../actions/types";
 
 const initialState = {
@@ -7,7 +8,7 @@ const initialState = {
   error: {},
 };
 
-export default function branches(state = initialState, action) {
+function branches(state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
@@ -30,3 +31,5 @@ export default function branches(state = initialState, action) {
       return state;
   }
 }
+
+export default combineReducers({ branches });

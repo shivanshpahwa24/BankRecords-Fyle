@@ -102,32 +102,37 @@ body {
   margin: 0.5rem 0;
 }
 
-.leaderboard {
+.bank-branches {
   min-height: 90vh;
   width: 100vw;
   color: var(--dark-color-a);
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
-.leaderboard-container {
+.bank-branches-dropdown {
+  width: 50%;
+
+  background-color: transparent;
+  padding: 1rem;
+  margin: 2rem;
+}
+.bank-branches-table {
   width: 70%;
   background-color: white;
   border-radius: 5px;
   border: none;
 }
 
-@media (max-width: 768px) {
-  .marks-container {
-    width: 60%;
-  }
-  .leaderboard-container {
-    width: 90%;
+@media (max-width: 1300px) {
+  .bank-branches-table {
+    width: 80%;
   }
 }
 
-@media (max-width: 576px) {
-  .marks-container {
-    width: 70%;
+@media (max-width: 768px) {
+  .bank-branches-table {
+    width: 90%;
   }
 }
