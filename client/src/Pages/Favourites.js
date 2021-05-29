@@ -46,16 +46,7 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
 
-const BranchTable = ({
-  getBranches,
-  branches: { branches },
-  city,
-  history,
-}) => {
-  useEffect(() => {
-    getBranches(city);
-  }, [getBranches, city]);
-
+const Favourites = ({ branches: { branches }, city, history }) => {
   return (
     <div className="bank-branches-table shadow">
       <MaterialTable
@@ -84,16 +75,16 @@ const BranchTable = ({
             },
           },
           /* {
-            field: "bank_id",
-            title: "Bank ID",
-            cellStyle: {
-              color: "#575757",
-            },
-            headerStyle: {
-              fontSize: "1.1rem",
-              fontWeight: "bold",
-            },
-          }, */
+        field: "bank_id",
+        title: "Bank ID",
+        cellStyle: {
+          color: "#575757",
+        },
+        headerStyle: {
+          fontSize: "1.1rem",
+          fontWeight: "bold",
+        },
+      }, */
           {
             field: "branch",
             title: "Branch",
@@ -185,7 +176,7 @@ const BranchTable = ({
   );
 };
 
-BranchTable.propTypes = {
+Favourites.propTypes = {
   getBranches: PropTypes.func.isRequired,
   branches: PropTypes.object.isRequired,
 };
@@ -193,5 +184,5 @@ BranchTable.propTypes = {
 const mapStateToProps = (state) => ({ branches: state.branches });
 
 export default connect(mapStateToProps, { getBranches })(
-  withRouter(BranchTable)
+  withRouter(Favourites)
 );
