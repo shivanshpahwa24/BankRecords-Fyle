@@ -42,7 +42,7 @@ body {
 }
 
 .details-container {
-  max-width: 500px;
+  max-width: 600px;
   color: #fff;
   margin: 1rem;
   min-width: 400px;
@@ -55,6 +55,9 @@ body {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
+.details-header h3 {
+  font-size: 1.5rem;
+}
 
 .details-main {
   padding: 30px 40px;
@@ -62,11 +65,21 @@ body {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+.details-main div {
+  font-size: 1.1rem;
+  display: flex;
+}
+.details-field {
+  width: 30%;
+}
+.details-state {
+  width: 70%;
+}
 
 .details-main .btn1 {
   display: block;
   cursor: pointer;
-  margin: 1rem auto;
+  margin: 1.5rem auto 0.5rem auto;
   padding: 0.5rem 1rem;
   background: var(--light-color);
   color: var(--dark-color-a);
@@ -113,5 +126,13 @@ body {
 @media (max-width: 768px) {
   .bank-branches-table {
     width: 90%;
+  }
+
+  .details-main div {
+    font-size: 1rem;
+  }
+
+  .details-main {
+    padding: 30px 20px;
   }
 }
