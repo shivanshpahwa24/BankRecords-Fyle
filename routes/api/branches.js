@@ -1,7 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const { check, validationResult } = require("express-validator");
-const { v4: uuid } = require("uuid");
 
 const db = require("../../config/db");
 

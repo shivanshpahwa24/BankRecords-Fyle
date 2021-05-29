@@ -15,11 +15,8 @@
   "dependencies": {
     "dotenv": "^9.0.2",
     "express": "^4.17.1",
-    "express-validator": "^6.11.1",
     "pg": "^8.6.0",
-    "pg-hstore": "^2.3.3",
-    "sequelize": "^6.6.2",
-    "uuid": "^8.3.2"
+    "pg-hstore": "^2.3.3"
   },
   "devDependencies": {
     "concurrently": "^6.1.0",

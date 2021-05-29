@@ -3,14 +3,6 @@ const app = express();
 
 const path = require("path");
 
-// Database
-const db = require("./config/db");
-
-/* // Test DB
-db.authenticate()
-  .then(() => console.log("Database connected..."))
-  .catch((err) => console.log("Error: " + err));
- */
 //Init Middleware
 app.use(express.json({ extended: false }));
 
