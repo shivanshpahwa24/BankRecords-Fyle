@@ -33,31 +33,22 @@ body {
 .navbar .nav-link {
   color: var(--dark-color-a);
 }
-.alert-container {
-  width: 80%;
-  margin: 0 auto;
-  position: absolute;
-  left: 10%;
-}
-.alert-container .alert {
-  margin-top: 1rem;
-}
 
-.landing {
-  height: 100vh;
+.details {
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.landing-container {
+.details-container {
   max-width: 500px;
   color: #fff;
   margin: 1rem;
   min-width: 400px;
 }
 
-.landing-header {
+.details-header {
   text-align: center;
   padding: 20px;
   background: var(--dark-color-a);
@@ -65,14 +56,14 @@ body {
   border-top-right-radius: 5px;
 }
 
-.landing-main {
+.details-main {
   padding: 30px 40px;
   background: var(--dark-color-b);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
 
-.landing-main .btn1 {
+.details-main .btn1 {
   display: block;
   cursor: pointer;
   margin: 1rem auto;
@@ -86,22 +77,6 @@ body {
   font-size: 1.2rem;
 }
 
-.marks {
-  height: 90vh;
-  width: 100%;
-  color: var(--dark-color-a);
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-}
-.marks-container {
-  width: 40%;
-}
-.marks .form-group {
-  margin: 0.5rem 0;
-}
-
 .bank-branches {
   min-height: 90vh;
   width: 100vw;
@@ -113,13 +88,17 @@ body {
 }
 .bank-branches-dropdown {
   width: 50%;
-
   background-color: transparent;
   padding: 1rem;
+  color: var(--dark-color-a);
+  font-weight: bold;
+  border-color: var(--dark-color-a);
+  border-radius: 5px;
   margin: 2rem;
 }
 .bank-branches-table {
   width: 70%;
+  margin-bottom: 2rem;
   background-color: white;
   border-radius: 5px;
   border: none;

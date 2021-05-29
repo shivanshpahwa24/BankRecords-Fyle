@@ -3,16 +3,6 @@ const router = express.Router();
 
 const db = require("../../config/db");
 
-// Get all banks
-router.get("/banks", async (req, res) => {
-  try {
-    const allBanks = await db.query("SELECT * FROM banks");
-    res.json(allBanks.rows);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
-
 // Get branches based on possible matches across all columns and all rows
 router.get("/", async (req, res) => {
   try {
@@ -23,12 +13,15 @@ router.get("/", async (req, res) => {
     }
     const branches = await db.query(
       `
-      SELECT * FROM branches 
-      WHERE branch LIKE '%${search}%' OR address LIKE '%${search}%' OR city LIKE '%${search}%' OR district LIKE '%${search}%' OR state LIKE '%${search}%' 
+      SELECT branches.*, banks.name FROM branches
+      INNER JOIN banks
+      ON branches.bank_id = banks.id
+      WHERE branch LIKE '%${search}%' OR address LIKE '%${search}%' OR city LIKE '%${search}%' OR district LIKE '%${search}%' OR state LIKE '%${search}%' OR ifsc LIKE '%${search}%' OR bank_id::text LIKE '%${search}%' OR name LIKE '%${search}%'
       ORDER BY ifsc
       LIMIT ${limit ? limit : null} OFFSET ${offset ? offset : null}
       `
     );
+
     res.json(branches.rows);
   } catch (err) {
     console.error(err.message);
@@ -46,7 +39,9 @@ router.get("/autocomplete", async (req, res) => {
 
     const branches = await db.query(
       `
-      SELECT * FROM branches 
+      SELECT branches.*, banks.name FROM branches
+      INNER JOIN banks
+      ON branches.bank_id = banks.id
       WHERE branch LIKE '%${search}%' 
       ORDER BY ifsc
       LIMIT ${limit ? limit : null} OFFSET ${offset ? offset : null}
