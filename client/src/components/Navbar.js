@@ -6,7 +6,7 @@ const Navbar = () => {
     <nav className="navbar shadow sticky-top py-1 px-4 navbar-expand-lg navbar-light">
       <div className="container-fluid d-flex align-items-center mx-0 p-1 justify-content-between">
         <div>
-          <h3>BankBranches</h3>
+          <h3>BankRecords</h3>
         </div>
         <div className="d-flex">
           <div className="collapse navbar-collapse" id="navbarToggler">
