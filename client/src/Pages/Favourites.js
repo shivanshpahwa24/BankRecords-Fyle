@@ -130,7 +130,7 @@ const Favourites = ({ branches: { favourites }, history }) => {
               },
             },
           ]}
-          data={favourites}
+          data={favourites === null ? [] : favourites}
           title={
             <h4
               style={{
