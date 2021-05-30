@@ -8,17 +8,38 @@ const Navbar = () => {
         <div>
           <h3>BankBranches</h3>
         </div>
-        <div>
-          <NavLink
-            className="nav-link"
-            to="/"
-            exact={true}
-            style={{ color: "#343a40" }}
-            activeStyle={{ color: "#17a2b8" }}
-          >
-            Home
-          </NavLink>
+        <div className="d-flex">
+          <div className="collapse navbar-collapse" id="navbarToggler">
+            <NavLink
+              className="nav-link"
+              to="/"
+              exact={true}
+              style={{ color: "#343a40" }}
+              activeStyle={{ color: "#17a2b8" }}
+            >
+              Home
+            </NavLink>
+            <NavLink
+              className="nav-link"
+              to="/favourites"
+              style={{ color: "#343a40" }}
+              activeStyle={{ color: "#17a2b8" }}
+            >
+              Your Favourites
+            </NavLink>
+          </div>
         </div>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarToggler"
+          aria-controls="navbarToggler"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
       </div>
     </nav>
   );

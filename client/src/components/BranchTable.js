@@ -1,7 +1,7 @@
 import React, { useEffect, forwardRef } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getBranches } from "../actions/branches";
+import { getBranches, saveBranch } from "../actions/branches";
 import MaterialTable from "material-table";
 import { withRouter } from "react-router-dom";
 
@@ -48,6 +48,7 @@ const tableIcons = {
 
 const BranchTable = ({
   getBranches,
+  saveBranch,
   branches: { branches },
   city,
   history,
@@ -168,6 +169,7 @@ const BranchTable = ({
           sorting: true,
           maxBodyHeight: 400,
           actionsColumnIndex: -1,
+          pageSizeOptions: [5, 10, 15, 20, 30, 40, 50, 60, 70, 80, 90, 100],
         }}
         onRowClick={(event, rowData) => {
           history.push(`/banks/${rowData.bank_id}`);
@@ -177,7 +179,10 @@ const BranchTable = ({
           {
             icon: BookmarkBorderIcon,
             tooltip: "Add to favourites",
-            onClick: (event, rowData) => alert("You saved " + rowData.name),
+            onClick: (event, rowData) => {
+              saveBranch(rowData);
+              alert("You saved " + rowData.name);
+            },
           },
         ]}
       />
@@ -187,11 +192,12 @@ const BranchTable = ({
 
 BranchTable.propTypes = {
   getBranches: PropTypes.func.isRequired,
+  saveBranch: PropTypes.func.isRequired,
   branches: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({ branches: state.branches });
 
-export default connect(mapStateToProps, { getBranches })(
+export default connect(mapStateToProps, { getBranches, saveBranch })(
   withRouter(BranchTable)
 );

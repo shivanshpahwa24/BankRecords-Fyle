@@ -1,11 +1,16 @@
 import { combineReducers } from "redux";
-import { VIEW_BRANCHES, BRANCHES_ERROR } from "../actions/types";
+import {
+  VIEW_BRANCHES,
+  BRANCHES_ERROR,
+  FAVOURITE_BRANCH,
+} from "../actions/types";
 
 const initialState = {
   branch: null,
   branches: [],
   loading: true,
   error: {},
+  favourites: JSON.parse(localStorage.getItem("favourites")),
 };
 
 function branches(state = initialState, action) {
@@ -25,6 +30,12 @@ function branches(state = initialState, action) {
         error: payload,
         loading: false,
         branch: null,
+      };
+    case FAVOURITE_BRANCH:
+      return {
+        ...state,
+        favourites: JSON.parse(localStorage.getItem("favourites")),
+        loading: false,
       };
 
     default:

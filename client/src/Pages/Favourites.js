@@ -1,11 +1,9 @@
-import React, { useEffect, forwardRef } from "react";
+import React, { forwardRef } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getBranches } from "../actions/branches";
 import MaterialTable from "material-table";
 import { withRouter } from "react-router-dom";
 
-import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import AddBox from "@material-ui/icons/AddBox";
 import ArrowDownward from "@material-ui/icons/ArrowDownward";
 import Check from "@material-ui/icons/Check";
@@ -46,143 +44,124 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
 
-const Favourites = ({ branches: { branches }, city, history }) => {
+const Favourites = ({ branches: { favourites }, history }) => {
   return (
-    <div className="bank-branches-table shadow">
-      <MaterialTable
-        icons={tableIcons}
-        columns={[
-          {
-            field: "ifsc",
-            title: "IFSC",
-            cellStyle: {
-              color: "#575757",
+    <div className="bank-branches">
+      <div className="bank-branches-table shadow">
+        <MaterialTable
+          icons={tableIcons}
+          columns={[
+            {
+              field: "ifsc",
+              title: "IFSC",
+              cellStyle: {
+                color: "#575757",
+              },
+              headerStyle: {
+                fontSize: "1.1rem",
+                fontWeight: "bold",
+              },
             },
-            headerStyle: {
-              fontSize: "1.1rem",
-              fontWeight: "bold",
+            {
+              field: "name",
+              title: "Bank Name",
+              cellStyle: {
+                color: "#575757",
+              },
+              headerStyle: {
+                fontSize: "1.1rem",
+                fontWeight: "bold",
+              },
             },
-          },
-          {
-            field: "name",
-            title: "Bank Name",
-            cellStyle: {
-              color: "#575757",
+
+            {
+              field: "branch",
+              title: "Branch",
+              cellStyle: {
+                color: "#575757",
+              },
+              headerStyle: {
+                fontSize: "1.1rem",
+                fontWeight: "bold",
+              },
             },
-            headerStyle: {
-              fontSize: "1.1rem",
-              fontWeight: "bold",
+            {
+              field: "address",
+              title: "Address",
+              cellStyle: {
+                color: "#575757",
+              },
+              headerStyle: {
+                fontSize: "1.1rem",
+                fontWeight: "bold",
+              },
             },
-          },
-          /* {
-        field: "bank_id",
-        title: "Bank ID",
-        cellStyle: {
-          color: "#575757",
-        },
-        headerStyle: {
-          fontSize: "1.1rem",
-          fontWeight: "bold",
-        },
-      }, */
-          {
-            field: "branch",
-            title: "Branch",
-            cellStyle: {
-              color: "#575757",
+            {
+              field: "city",
+              title: "City",
+              cellStyle: {
+                color: "#575757",
+              },
+              headerStyle: {
+                fontSize: "1.1rem",
+                fontWeight: "bold",
+              },
             },
-            headerStyle: {
-              fontSize: "1.1rem",
-              fontWeight: "bold",
+            {
+              field: "district",
+              title: "District",
+              cellStyle: {
+                color: "#575757",
+              },
+              headerStyle: {
+                fontSize: "1.1rem",
+                fontWeight: "bold",
+              },
             },
-          },
-          {
-            field: "address",
-            title: "Address",
-            cellStyle: {
-              color: "#575757",
+            {
+              field: "state",
+              title: "State",
+              cellStyle: {
+                color: "#575757",
+              },
+              headerStyle: {
+                fontSize: "1.1rem",
+                fontWeight: "bold",
+              },
             },
-            headerStyle: {
-              fontSize: "1.1rem",
-              fontWeight: "bold",
-            },
-          },
-          {
-            field: "city",
-            title: "City",
-            cellStyle: {
-              color: "#575757",
-            },
-            headerStyle: {
-              fontSize: "1.1rem",
-              fontWeight: "bold",
-            },
-          },
-          {
-            field: "district",
-            title: "District",
-            cellStyle: {
-              color: "#575757",
-            },
-            headerStyle: {
-              fontSize: "1.1rem",
-              fontWeight: "bold",
-            },
-          },
-          {
-            field: "state",
-            title: "State",
-            cellStyle: {
-              color: "#575757",
-            },
-            headerStyle: {
-              fontSize: "1.1rem",
-              fontWeight: "bold",
-            },
-          },
-        ]}
-        data={branches}
-        title={
-          <h4
-            style={{
-              fontSize: "1.3rem",
-              marginTop: "1rem",
-              color: "#343a40",
-              fontWeight: "bold",
-            }}
-          >
-            Branches
-          </h4>
-        }
-        options={{
-          search: true,
-          sorting: true,
-          maxBodyHeight: 400,
-          actionsColumnIndex: -1,
-        }}
-        onRowClick={(event, rowData) => {
-          history.push(`/banks/${rowData.bank_id}`);
-          event.stopPropagation();
-        }}
-        actions={[
-          {
-            icon: BookmarkBorderIcon,
-            tooltip: "Add to favourites",
-            onClick: (event, rowData) => alert("You saved " + rowData.name),
-          },
-        ]}
-      />
+          ]}
+          data={favourites}
+          title={
+            <h4
+              style={{
+                fontSize: "1.3rem",
+                marginTop: "1rem",
+                color: "#343a40",
+                fontWeight: "bold",
+              }}
+            >
+              Favourites
+            </h4>
+          }
+          options={{
+            search: true,
+            sorting: true,
+            maxBodyHeight: 400,
+          }}
+          onRowClick={(event, rowData) => {
+            history.push(`/banks/${rowData.bank_id}`);
+            event.stopPropagation();
+          }}
+        />
+      </div>
     </div>
   );
 };
 
 Favourites.propTypes = {
-  getBranches: PropTypes.func.isRequired,
   branches: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({ branches: state.branches });
 
-export default connect(mapStateToProps, { getBranches })(
-  withRouter(Favourites)
-);
+export default connect(mapStateToProps)(withRouter(Favourites));

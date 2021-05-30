@@ -25,9 +25,14 @@ const BankDetails = ({ branches: { branches }, match }) => {
             <div className="details-state"> : {bank.ifsc}</div>
           </div>
           <div>
+            <div className="details-field">BANK ID</div>
+            <div className="details-state"> : {bank.bank_id}</div>
+          </div>
+          <div>
             <div className="details-field">BRANCH</div>
             <div className="details-state"> : {bank.branch}</div>
           </div>
+
           <div>
             <div className="details-field">ADDRESS</div>
             <div className="details-state"> : {bank.address}</div>
